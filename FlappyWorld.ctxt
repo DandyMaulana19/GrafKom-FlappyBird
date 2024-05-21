@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=FlappyWorld
+comment1.params=
+comment1.target=FlappyWorld()
+comment2.params=
+comment2.target=void\ spawnInitialPipes()
+comment3.params=
+comment3.target=void\ act()
+comment4.params=
+comment4.target=void\ startBackgroundMusic()
+comment5.params=
+comment5.target=void\ gameOver()
+numComments=6

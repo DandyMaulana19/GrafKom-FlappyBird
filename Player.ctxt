@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=Player
+comment1.params=
+comment1.target=Player()
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=boolean\ isAlive()
+comment4.params=x\ y
+comment4.target=void\ setLocation(double,\ double)
+numComments=5
