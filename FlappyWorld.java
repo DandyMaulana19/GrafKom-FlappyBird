@@ -4,18 +4,19 @@ public class FlappyWorld extends World {
     private GreenfootSound backgroundMusic;
     private boolean musicStarted;
     private boolean gameStarted;
-    private int timer;
-    private int speed = 50;
     private int gameTime;
     public static int pipeSpeed;
     private int pipeSpawnTime;
     private boolean isGameOver;
+    private int level;
+    private int pipeCount; // Counter for pipes in level 1
 
     public FlappyWorld() {    
         super(600, 400, 1);
         addObject(new Player(), 100, 300);
-        addObject(new Score(), 300, 100);
-        Greenfoot.setSpeed(speed);
+        Score score = new Score();
+        addObject(score, 300, 100);
+        Greenfoot.setSpeed(50);
         
         musicStarted = false;
         gameStarted = false;
@@ -23,6 +24,9 @@ public class FlappyWorld extends World {
         pipeSpeed = 2;
         pipeSpawnTime = 100;
         isGameOver = false;
+        level = 1;
+        pipeCount = 0; // Initialize pipe counter
+        setBackground("background1.png"); // Set initial background
     }
 
     public void act() {
@@ -33,33 +37,57 @@ public class FlappyWorld extends World {
         
         gameTime++;
         
-        if (gameTime % pipeSpawnTime == 8) {
-            addObject(new Pipe(), getWidth(), Greenfoot.getRandomNumber(getHeight()));
+        if (gameTime % pipeSpawnTime == 0) {
+            if (level == 1) {
+                if (pipeCount < 10) {
+                    addObject(new Pipe(), getWidth(), Greenfoot.getRandomNumber(getHeight()));
+                    pipeCount++;
+                    System.out.println("Added Pipe at level 1, count: " + pipeCount); // Debug statement
+                }
+            } else if (level == 2) {
+               addObject(new Tower2(), getWidth(), Greenfoot.getRandomNumber(getHeight()));
+                    pipeCount++;
+            }
         }
-        
-        if (gameTime == 900) {
-            pipeSpeed += 5;
-        }
-        
-        if (timer == 600) {
-            timer = 0;
-            speed++;
-            Greenfoot.setSpeed(speed);
-        }
+
+        checkGameOver();
+        checkLevelUp();
     }
 
     private void startBackgroundMusic() {
         backgroundMusic = new GreenfootSound("backsound.mp3");
+        backgroundMusic.setVolume(80);
         backgroundMusic.playLoop();
+    }
+
+    private void checkGameOver() {
+        if (Score.score >= 10 && level == 1) {
+            levelUp();
+        } else if (Score.score >= 20) {
+            gameOver();
+        }
+    }
+
+    private void levelUp() {
+        level++;
+        Score.score = 0; // Reset score for the new level
+        setBackground("background2.png"); // Change background for new level
+        pipeSpeed += 2; // Increase pipe speed or any other game difficulty parameter
+        System.out.println("Level up to level " + level); // Debug statement
+    }
+
+    private void checkLevelUp() {
+        // Additional logic for more levels can be added here if needed
     }
 
     public void gameOver() {
         if (!isGameOver) {
             addObject(new GameOver(), getWidth() / 2, getHeight() / 2);
-            Score.checkHighScore();
+            Score.checkHighScore();  // Check and save high score
             backgroundMusic.stop();
             Greenfoot.stop();
             isGameOver = true;
+            System.out.println("Game Over."); // Debug statement
         }
     }
 }

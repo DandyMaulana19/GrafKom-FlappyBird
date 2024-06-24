@@ -11,14 +11,16 @@ public class Player extends Actor {
     }
 
     public void act() {
+        // Move the player according to the mouse position
         MouseInfo mouse = Greenfoot.getMouseInfo();
         if (mouse != null) {
             int mouseX = mouse.getX();
             int mouseY = mouse.getY();
             setLocation(mouseX, mouseY);
-            setRotation((int)(mouseY - getY()) * 16);
+            setRotation((int)(mouseY - getY()) * 16);  // Optional: Rotate player based on mouse movement
         }
 
+        // Check for collisions and update game state
         if (isAtEdge()) {
             dead = true;
         }

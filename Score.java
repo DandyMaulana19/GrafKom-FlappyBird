@@ -1,29 +1,30 @@
-import greenfoot.*; // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.io.*;
 
-public class Score extends Actor {
+public class Score extends Actor
+{
     public static int score;
-    public static int highScore;
+    public static int highScore;  // Variabel untuk menyimpan skor tertinggi
 
-    public Score() {
+    public Score(){
         score = 0;
-        highScore = readHighScore();
+        highScore = readHighScore();  // Membaca skor tertinggi dari file saat objek Score dibuat
     }
 
-    public void act() {
+    public void act(){
         World myWorld = getWorld();
         myWorld.showText("Score: " + score, 300, 100);
-        myWorld.showText("Highest Score: " + highScore, 300, 120);
+        myWorld.showText("High Score: " + highScore, 300, 120);  // Menampilkan skor tertinggi
     }
 
-    public static void add(int num) {
+    public static void add(int num){
         score += num;
     }
 
     public static void checkHighScore() {
         if (score > highScore) {
             highScore = score;
-            writeHighScore(highScore); // Menyimpan skor tertinggi ke file
+            writeHighScore(highScore);  // Menyimpan skor tertinggi ke file
         }
     }
 
@@ -32,7 +33,7 @@ public class Score extends Actor {
             BufferedReader reader = new BufferedReader(new FileReader("highscore.txt"));
             return Integer.parseInt(reader.readLine());
         } catch (IOException | NumberFormatException e) {
-            return 0;
+            return 0;  // Jika file tidak ditemukan atau ada kesalahan, mulai dari 0
         }
     }
 
