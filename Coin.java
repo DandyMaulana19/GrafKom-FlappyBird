@@ -1,11 +1,11 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-public class Tower2 extends Actor
-{
-    public Tower2(){
+public class Coin extends Actor {
+    public Coin() {
         GreenfootImage image = getImage();
-        image.scale(290, 950);
+        image.scale(60, 60); // Atur ukuran koin sesuai kebutuhan
     }
+
     public void act() {
         setLocation(getX() - FlappyWorld.pipeSpeed, getY());
         if (getX() == 0) {
@@ -13,3 +13,4 @@ public class Tower2 extends Actor
         }
     }
 }
+
