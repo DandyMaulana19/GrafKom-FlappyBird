@@ -62,7 +62,7 @@ public void act() {
 
 
     checkGameOver();
-    finish();
+    //finish();
 }
 
 private void startBackgroundMusic() {
@@ -78,8 +78,8 @@ private void checkGameOver() {
     //} else if (Score.score >= 30 && level == 2){
     } else if (Score.score >= 0 && level == 2){
         levelUp();
-    } else if (Score.score >= 40) {
-        gameOver();
+    } else if (Score.score >= 5) {
+        finish();
     }
 }
 
@@ -90,22 +90,23 @@ private void levelUp() {
         setBackground("background2.png");
     }else if(level == 3){
         setBackground("background3.png"); 
+        Greenfoot.setSpeed(55); // Increase game speed at level 3
     }
     
     
 //    System.out.println("Level up to level " + level); // Debug statement
 }
 
-//private void finish() {
-//    if (!finish) {
-//        addObject(new GameOver(), getWidth() / 2, getHeight() / 2);
-//        Score.checkHighScore();  // Check and save high score
-//        backgroundMusic.stop();
-//        Greenfoot.stop();
-//        isGameOver = true;
-   //     System.out.println("Game Over."); // Debug statement
-//    }
-//}
+  private void finish() {
+        if (!isGameOver) {
+            addObject(new Finish(), getWidth() / 2, getHeight() / 2);
+            Score.checkHighScore();  // Check and save high score
+            backgroundMusic.stop();
+            Greenfoot.stop();
+            isGameOver = true;
+            //System.out.println("Game Finish."); // Debug statement
+        }
+    }
 
 public void gameOver() {
     if (!isGameOver) {
