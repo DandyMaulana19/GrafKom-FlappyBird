@@ -62,7 +62,7 @@ public void act() {
 
 
     checkGameOver();
-    finish();
+    //finish();
 }
 
 private void startBackgroundMusic() {
@@ -72,11 +72,11 @@ private void startBackgroundMusic() {
 }
 
 private void checkGameOver() {
-    //if (Score.score >= 10 && level == 1) {
-    if (Score.score >= 0 && level == 1) {
+    if (Score.score >= 10 && level == 1) {
+    //if (Score.score >= 0 && level == 1) {
         levelUp();
-    //} else if (Score.score >= 30 && level == 2){
-    } else if (Score.score >= 0 && level == 2){
+    } else if (Score.score >= 30 && level == 2){
+    //} else if (Score.score >= 0 && level == 2){
         levelUp();
     } else if (Score.score >= 40) {
         gameOver();
