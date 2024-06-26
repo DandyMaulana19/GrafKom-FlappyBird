@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 public class ScoreMessage extends Actor {
-    private int lifespan; // Durasi pesan ditampilkan
+    private int lifespan;
 
     public ScoreMessage(String message, int duration) {
         GreenfootImage image = new GreenfootImage(message, 50, Color.YELLOW, new Color(0, 0, 0, 0));

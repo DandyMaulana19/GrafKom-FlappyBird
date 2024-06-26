@@ -5,11 +5,11 @@ private GreenfootSound backgroundMusic;
 private boolean musicStarted;
 private boolean gameStarted;
 private int gameTime;
-public static int pipeSpeed;
-private int pipeSpawnTime;
+public static int towerSpeed;
+private int towerSpawnTime;
 private boolean isGameOver;
 private int level;
-private int pipeCount; // Counter for pipes in level 1
+private int towerCount; // Counter for pipes in level 1
 private int coinSpawnTime;
 
 
@@ -23,13 +23,13 @@ public FlappyWorld() {
     musicStarted = false;
     gameStarted = false;
     gameTime = 0;
-    pipeSpeed = 2;
-    pipeSpawnTime = 100;
+    towerSpeed = 2;
+    towerSpawnTime = 100;
     isGameOver = false;
     level = 1;
-    pipeCount = 0; // Initialize pipe counter
-    coinSpawnTime = 150; // Set coin spawn interval
-    setBackground("background1.png"); // Set initial background
+    towerCount = 0; 
+    coinSpawnTime = 150; 
+    setBackground("background1.png");
 }
 
 public void act() {
@@ -40,26 +40,29 @@ public void act() {
     
     gameTime++;
     
-    if (gameTime % pipeSpawnTime == 0) {
+    if (gameTime % towerSpawnTime == 0) {
         if (level == 1) {
-            if (pipeCount < 10) {
-                addObject(new Pipe(), getWidth(), Greenfoot.getRandomNumber(getHeight()));
-                pipeCount++;
-                System.out.println("Added Pipe at level 1, count: " + pipeCount); // Debug statement
+            if (towerCount < 10) {
+                addObject(new Tower1(), getWidth(), Greenfoot.getRandomNumber(getHeight()));
+                towerCount++;
+                //System.out.println("Added Pipe at level 1, count: " + pipeCount); // Debug statement
             }
         } else if (level == 2) {
            addObject(new Tower2(), getWidth(), Greenfoot.getRandomNumber(getHeight()));
-                pipeCount++;
+                towerCount++;
+        } else if (level == 3) {
+           addObject(new Tower3(), getWidth(), Greenfoot.getRandomNumber(getHeight()));
+                towerCount++;
         }
     }
     
-     if (level == 2 && gameTime % coinSpawnTime == 0) {
+    if (level == 2 && gameTime % coinSpawnTime == 0) {
             addObject(new Coin(), getWidth(), Greenfoot.getRandomNumber(getHeight()));
     }
 
 
     checkGameOver();
-    checkLevelUp();
+    finish();
 }
 
 private void startBackgroundMusic() {
@@ -69,24 +72,40 @@ private void startBackgroundMusic() {
 }
 
 private void checkGameOver() {
-    if (Score.score >= 10 && level == 1) {
+    //if (Score.score >= 10 && level == 1) {
+    if (Score.score >= 0 && level == 1) {
         levelUp();
-    } else if (Score.score >= 30) {
+    //} else if (Score.score >= 30 && level == 2){
+    } else if (Score.score >= 0 && level == 2){
+        levelUp();
+    } else if (Score.score >= 40) {
         gameOver();
     }
 }
 
 private void levelUp() {
     level++;
-    //Score.score = 0; // Reset score for the new level
-    setBackground("background2.png"); // Change background for new level
-    pipeSpeed += 2; // Increase pipe speed or any other game difficulty parameter
-    System.out.println("Level up to level " + level); // Debug statement
+    towerSpeed += 2;
+    if (level == 2){
+        setBackground("background2.png");
+    }else if(level == 3){
+        setBackground("background3.png"); 
+    }
+    
+    
+//    System.out.println("Level up to level " + level); // Debug statement
 }
 
-private void checkLevelUp() {
-    // Additional logic for more levels can be added here if needed
-}
+//private void finish() {
+//    if (!finish) {
+//        addObject(new GameOver(), getWidth() / 2, getHeight() / 2);
+//        Score.checkHighScore();  // Check and save high score
+//        backgroundMusic.stop();
+//        Greenfoot.stop();
+//        isGameOver = true;
+   //     System.out.println("Game Over."); // Debug statement
+//    }
+//}
 
 public void gameOver() {
     if (!isGameOver) {
@@ -95,7 +114,7 @@ public void gameOver() {
         backgroundMusic.stop();
         Greenfoot.stop();
         isGameOver = true;
-        System.out.println("Game Over."); // Debug statement
+   //     System.out.println("Game Over."); // Debug statement
     }
 }
 }

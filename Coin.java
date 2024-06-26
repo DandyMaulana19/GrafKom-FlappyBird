@@ -7,7 +7,7 @@ public class Coin extends Actor {
     }
 
     public void act() {
-        setLocation(getX() - FlappyWorld.pipeSpeed, getY());
+        setLocation(getX() - FlappyWorld.towerSpeed, getY());
         if (getX() == 0) {
             getWorld().removeObject(this);
         }

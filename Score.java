@@ -4,17 +4,17 @@ import java.io.*;
 public class Score extends Actor
 {
     public static int score;
-    public static int highScore;  // Variabel untuk menyimpan skor tertinggi
+    public static int highScore;  
 
     public Score(){
         score = 0;
-        highScore = readHighScore();  // Membaca skor tertinggi dari file saat objek Score dibuat
+        highScore = readHighScore();  
     }
 
     public void act(){
         World myWorld = getWorld();
-        myWorld.showText("Score: " + score, 300, 100);
-        myWorld.showText("High Score: " + highScore, 300, 120);  // Menampilkan skor tertinggi
+        myWorld.showText("Score: " + score, 300, 50);
+        myWorld.showText("High Score: " + highScore, 300, 70);
     }
 
     public static void add(int num){

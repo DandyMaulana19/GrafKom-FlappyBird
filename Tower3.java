@@ -1,13 +1,13 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-public class Pipe extends Actor
+public class Tower3 extends Actor
 {
-    public Pipe(){
+    public Tower3(){
         GreenfootImage image = getImage();
-        image.scale(112, 800);
+        image.scale(200, 800);
     }
     public void act() {
-        setLocation(getX() - FlappyWorld.pipeSpeed, getY());
+        setLocation(getX() - FlappyWorld.towerSpeed, getY());
         if (getX() == 0) {
             getWorld().removeObject(this);
         }

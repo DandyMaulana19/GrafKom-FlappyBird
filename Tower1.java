@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-public class Tower2 extends Actor
+public class Tower1 extends Actor
 {
-    public Tower2(){
+    public Tower1(){
         GreenfootImage image = getImage();
-        image.scale(300, 950);
+        image.scale(112, 800);
     }
     public void act() {
         setLocation(getX() - FlappyWorld.towerSpeed, getY());
