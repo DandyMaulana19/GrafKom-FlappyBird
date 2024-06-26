@@ -79,12 +79,6 @@ public class Player extends Actor {
             myWorld.gameOver();
             getWorld().removeObject(this);
         }
-        
-        //if (finish) {
-        //    FlappyWorld myWorld = (FlappyWorld) getWorld();
-        //    myWorld.finish();
-        //    getWorld().removeObject(this);
-        //}
     }
 
 

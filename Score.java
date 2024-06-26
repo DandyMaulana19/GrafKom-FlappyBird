@@ -1,8 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.io.*;
 
-public class Score extends Actor
-{
+public class Score extends Actor {
     public static int score;
     public static int highScore;  
 
@@ -24,7 +23,7 @@ public class Score extends Actor
     public static void checkHighScore() {
         if (score > highScore) {
             highScore = score;
-            writeHighScore(highScore);  // Menyimpan skor tertinggi ke file
+            writeHighScore(highScore);
         }
     }
 
@@ -33,7 +32,7 @@ public class Score extends Actor
             BufferedReader reader = new BufferedReader(new FileReader("highscore.txt"));
             return Integer.parseInt(reader.readLine());
         } catch (IOException | NumberFormatException e) {
-            return 0;  // Jika file tidak ditemukan atau ada kesalahan, mulai dari 0
+            return 0;
         }
     }
 

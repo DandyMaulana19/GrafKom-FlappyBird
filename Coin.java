@@ -1,9 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 public class Coin extends Actor {
+    
     public Coin() {
         GreenfootImage image = getImage();
-        image.scale(60, 60); // Atur ukuran koin sesuai kebutuhan
+        image.scale(60, 60);
     }
 
     public void act() {
@@ -13,4 +14,3 @@ public class Coin extends Actor {
         }
     }
 }
-
